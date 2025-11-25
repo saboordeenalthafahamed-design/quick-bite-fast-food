@@ -1,0 +1,2430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Bite - Delicious Food Delivery</title>
+    <link rel="icon" href="./Images/images.jpeg">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #ff6b6b;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+            border-radius: 8px;
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 28px;
+        }
+        
+        /* Navigation styles */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .login-btn {
+            background-color: white;
+            color: #ff6b6b !important;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .user-welcome {
+            background-color: #4CAF50;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Hero section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+        }
+        
+        /* Section styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            font-size: 36px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #ff6b6b;
+            margin: 15px auto;
+        }
+        
+        /* How It Works section */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-icon {
+            font-size: 40px;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        /* Benefits section */
+        #benefits {
+            background-color: #fff5f5;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .benefit-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        /* Community section */
+        .community-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .community-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .community-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .community-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Food section */
+        #ourfood {
+            background-color: #fff5f5;
+        }
+        
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .food-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .food-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .food-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .food-card:hover .food-image img {
+            transform: scale(1.1);
+        }
+        
+        .food-info {
+            padding: 20px;
+        }
+        
+        .food-info h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .food-price {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #ff6b6b;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #ff6b6b;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-modal-content {
+            max-width: 900px;
+            padding: 20px;
+        }
+        
+        .address-modal-content {
+            max-width: 500px;
+            padding: 40px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6b6b;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #ff5252;
+        }
+        
+        .modal-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 32px;
+        }
+        
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .order-card {
+            background-color: #fff5f5;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .order-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .order-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .order-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .order-info {
+            padding: 20px;
+        }
+        
+        .order-info h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .order-price {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .order-btn {
+            display: block;
+            width: 100%;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .order-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        /* Star Rating Styles */
+        .star-rating {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ffc107;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+        
+        .star-rating.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .star-rating::before {
+            content: "★";
+            position: absolute;
+            font-size: 44px;
+            color: #ffc107;
+            z-index: -1;
+        }
+        
+        /* Cart badge */
+        .cart-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1001;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Address Modal Styles */
+        .address-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .address-submit-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .address-submit-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        /* Video Player Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .video-description {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+        
+        /* Login Modal Styles */
+        .login-modal-content {
+            max-width: 450px;
+            padding: 40px;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .remember-me input {
+            margin: 0;
+        }
+        
+        .forgot-password {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .login-submit-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .login-submit-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        
+        .signup-link a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Cart notification */
+        .cart-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Address Button Styles */
+        .address-btn-container {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px dashed #e0e0e0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .address-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .address-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dishes-btn {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dishes-btn:hover {
+            background-color: #0b7dda;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Admin Button Styles */
+        .admin-btn {
+            background-color: #9C27B0;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-btn:hover {
+            background-color: #7B1FA2;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Dishes Ordered Page Styles */
+        .dishes-ordered-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dishes-ordered-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 32px;
+            position: relative;
+        }
+        
+        .dishes-ordered-header::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #ff6b6b;
+            margin: 15px auto;
+        }
+        
+        .dishes-list {
+            margin-bottom: 30px;
+        }
+        
+        .dish-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+        
+        .dish-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .dish-name {
+            font-weight: 600;
+            font-size: 18px;
+            flex: 2;
+        }
+        
+        .dish-quantity {
+            background-color: #ff6b6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 15px;
+        }
+        
+        .dish-price {
+            font-weight: 600;
+            color: #ff6b6b;
+            flex: 1;
+            text-align: right;
+        }
+        
+        .dish-total {
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+            text-align: right;
+        }
+        
+        .total-dishes {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .total-amount {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff5f5;
+            border-radius: 10px;
+            color: #ff6b6b;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .back-btn {
+            display: block;
+            margin: 30px auto 0;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+        
+        .no-orders {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .dish-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .dish-header-item {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .dish-header-name {
+            flex: 2;
+            text-align: left;
+        }
+        
+        /* Address Submitted Message Styles */
+        .address-submitted-message {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 10px;
+            border: 2px solid #4CAF50;
+            color: #2e7d32;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        /* Admin Panel Styles */
+        .admin-panel-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-panel-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 32px;
+            position: relative;
+        }
+        
+        .admin-panel-header::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #9C27B0;
+            margin: 15px auto;
+        }
+        
+        .admin-login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .admin-login-btn {
+            background-color: #9C27B0;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .admin-login-btn:hover {
+            background-color: #7B1FA2;
+        }
+        
+        .admin-back-btn {
+            display: block;
+            margin: 30px auto 0;
+            background-color: #9C27B0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .admin-back-btn:hover {
+            background-color: #7B1FA2;
+            transform: translateY(-2px);
+        }
+        
+        /* Upload Button Styles */
+        .upload-btn {
+            background-color: #FF9800;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 15px;
+        }
+        
+        .upload-btn:hover {
+            background-color: #F57C00;
+            transform: translateY(-2px);
+        }
+        
+        .admin-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .users-list {
+            margin-bottom: 30px;
+        }
+        
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+        
+        .user-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            font-size: 18px;
+            flex: 2;
+        }
+        
+        .user-email {
+            font-weight: 500;
+            color: #666;
+            flex: 3;
+        }
+        
+        .user-login-time {
+            font-weight: 500;
+            color: #888;
+            flex: 2;
+            text-align: right;
+        }
+        
+        .user-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .user-header-name {
+            flex: 2;
+            text-align: left;
+        }
+        
+        .user-header-email {
+            flex: 3;
+            text-align: left;
+        }
+        
+        .user-header-time {
+            flex: 2;
+            text-align: right;
+        }
+        
+        .total-users {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #9C27B0;
+        }
+        
+        /* Address Data Styles */
+        .address-data-container {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+        
+        .address-data-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+            position: relative;
+        }
+        
+        .address-data-header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #9C27B0;
+            margin: 10px auto;
+        }
+        
+        .address-list {
+            margin-bottom: 30px;
+        }
+        
+        .address-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+        
+        .address-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .address-name {
+            font-weight: 600;
+            font-size: 18px;
+            flex: 2;
+        }
+        
+        .address-phone {
+            font-weight: 500;
+            color: #666;
+            flex: 2;
+        }
+        
+        .address-city {
+            font-weight: 500;
+            color: #666;
+            flex: 2;
+        }
+        
+        .address-landmark {
+            font-weight: 500;
+            color: #888;
+            flex: 3;
+        }
+        
+        .address-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .address-header-name {
+            flex: 2;
+            text-align: left;
+        }
+        
+        .address-header-phone {
+            flex: 2;
+            text-align: left;
+        }
+        
+        .address-header-city {
+            flex: 2;
+            text-align: left;
+        }
+        
+        .address-header-landmark {
+            flex: 3;
+            text-align: left;
+        }
+        
+        .total-addresses {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #9C27B0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .modal-content {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            
+            .order-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .cart-notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+            }
+            
+            .login-modal-content {
+                margin: 20px auto;
+                padding: 30px 20px;
+            }
+            
+            .user-welcome {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            
+            .video-modal-content {
+                margin: 20px auto;
+                padding: 15px;
+            }
+            
+            .address-modal-content {
+                margin: 20px auto;
+                padding: 30px 20px;
+            }
+            
+            .address-btn, .dishes-btn, .admin-btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .cart-badge {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .star-rating {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .star-rating::before {
+                font-size: 38px;
+            }
+            
+            .address-btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .dishes-ordered-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            
+            .dish-header {
+                display: none;
+            }
+            
+            .dish-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .dish-name, .dish-quantity, .dish-price, .dish-total {
+                flex: none;
+                width: 100%;
+                text-align: left;
+            }
+            
+            .dish-quantity {
+                width: auto;
+                align-self: flex-start;
+            }
+            
+            .admin-panel-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            
+            .user-header {
+                display: none;
+            }
+            
+            .user-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .user-name, .user-email, .user-login-time {
+                flex: none;
+                width: 100%;
+                text-align: left;
+            }
+            
+            .admin-buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .upload-btn {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .address-header {
+                display: none;
+            }
+            
+            .address-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .address-name, .address-phone, .address-city, .address-landmark {
+                flex: none;
+                width: 100%;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo" id="logo">
+                <img src="./Images/images (1).jpeg" alt="Quick Bite Logo">
+                <h1>Quick Bite</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#howitworks">HOW IT WORKS</a></li>
+                    <li><a href="#benefits">BENEFITS</a></li>
+                    <li><a href="#community">COMMUNITY</a></li>
+                    <li><a href="#ourfood">OUR FOOD</a></li>
+                    <li><a href="#" class="btn" id="orderNowBtn">ORDER NOW</a></li>
+                    <li><a href="#" class="login-btn" id="loginBtn">Log in</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Badge -->
+    <div id="cartBadge" class="cart-badge" style="display: none;">0</div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Delicious Food, Delivered Fast</h2>
+            <p>Enjoy restaurant-quality meals prepared by top chefs and delivered to your door in minutes. Now serving Colombo, Kandy, and Galle!</p>
+            <a href="#ourfood" class="btn">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="howitworks">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">📱</div>
+                    <h3>Browse & Order</h3>
+                    <p>Explore our diverse menu and place your order through our app or website.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">👨‍🍳</div>
+                    <h3>We Prepare</h3>
+                    <p>Our expert chefs cook your meal with fresh ingredients and careful attention.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">🚚</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your food delivered hot and fresh right to your doorstep in record time.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">😋</div>
+                    <h3>Enjoy!</h3>
+                    <p>Sit back, relax, and savor delicious restaurant-quality food at Quick Bite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits">
+        <div class="container">
+            <h2 class="section-title">Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>Save Time</h3>
+                    <p>No more grocery shopping, meal prep, or cleanup. We handle everything so you can focus on what matters.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Eat Healthier</h3>
+                    <p>Our meals are nutritionist-approved with balanced portions and fresh ingredients.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Discover New Flavors</h3>
+                    <p>Try cuisines from around the world without leaving your home.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Flexible Options</h3>
+                    <p>Choose from various dietary preferences including vegetarian, vegan, gluten-free, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community">
+        <div class="container">
+            <h2 class="section-title">Our Community</h2>
+            <div class="community-content">
+                <div class="community-text">
+                    <h3>Join Thousands of Happy Customers</h3>
+                    <p>At Quick Bite, we're more than just a food delivery service - we're a community of food lovers. Our customers share their experiences, recipes, and food stories in our vibrant online community.</p>
+                    <p>Join our cooking classes, participate in food challenges, and connect with fellow food enthusiasts who share your passion for delicious meals.</p>
+                    <a href="#" class="btn" style="margin-top: 20px;" id="quickBiteVideoBtn">Quick Bite Video</a>
+                </div>
+                <div class="community-image">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Quick Bite Community">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Food Section -->
+    <section id="ourfood">
+        <div class="container">
+            <h2 class="section-title">Our Food</h2>
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="./Images/1400x919DrumsFlatsButtermilkChickenBurger-6832405a-2c63-4ef7-93ba-e92b56848f6a-0-1400x919.jpg" alt="Gourmet Burger">
+                    </div>
+                    <div class="food-info">
+                        <h3>Gourmet Burger</h3>
+                        <p>Juicy beef patty with fresh vegetables and special sauce</p>
+                        <div class="food-price">LKR 1,299</div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Margherita Pizza">
+                    </div>
+                    <div class="food-info">
+                        <h3>Margherita Pizza</h3>
+                        <p>Classic pizza with fresh mozzarella and basil</p>
+                        <div class="food-price">LKR 1,499</div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="./Images/Carbonara-7.jpg" alt="Pasta Carbonara">
+                    </div>
+                    <div class="food-info">
+                        <h3>Pasta Carbonara</h3>
+                        <p>Creamy pasta with pancetta and parmesan cheese</p>
+                        <div class="food-price">LKR 1,399</div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fresh Salad">
+                    </div>
+                    <div class="food-info">
+                        <h3>Garden Fresh Salad</h3>
+                        <p>Mixed greens with seasonal vegetables and vinaigrette</p>
+                        <div class="food-price">LKR 999</div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Rice and Curry">
+                    </div>
+                    <div class="food-info">
+                        <h3>Traditional Rice & Curry</h3>
+                        <p>Authentic Sri Lankan rice with 3 curries</p>
+                        <div class="food-price">LKR 850</div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-image">
+                        <img src="./Images/images.jpgAF" alt="Kottu Roti">
+                    </div>
+                    <div class="food-info">
+                        <h3>Chicken Kottu</h3>
+                        <p>Popular Sri Lankan chopped roti with vegetables</p>
+                        <div class="food-price">LKR 650</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quick Bite</h3>
+                    <p>Delivering delicious meals to your doorstep since 2020.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#howitworks">How It Works</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#community">Community</a></li>
+                        <li><a href="#ourfood">Our Food</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: info@quickbite.lk</li>
+                        <li>Phone: +94 (0) 11 234 5678</li>
+                        <li>Address: 123 Galle Road, Colombo 03</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Payment Methods</h3>
+                    <ul>
+                        <li>Cash on Delivery</li>
+                        <li>Credit/Debit Cards</li>
+                        <li>eZ Cash</li>
+                        <li>mCash</li>
+                        <li>Genie</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Quick Bite Sri Lanka. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Now Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Order Your Food</h2>
+            <div class="order-grid">
+                <div class="order-card">
+                    <div class="order-image">
+                        <img src="./Images/1400x919DrumsFlatsButtermilkChickenBurger-6832405a-2c63-4ef7-93ba-e92b56848f6a-0-1400x919.jpg" alt="Gourmet Burger">
+                    </div>
+                    <div class="order-info">
+                        <h3>Gourmet Burger</h3>
+                        <p>Juicy beef patty with fresh vegetables and special sauce</p>
+                        <div class="order-price">LKR 1,299</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="star-rating" id="star-1">1</div>
+                </div>
+                <div class="order-card">
+                    <div class="order-image">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Margherita Pizza">
+                    </div>
+                    <div class="order-info">
+                        <h3>Margherita Pizza</h3>
+                        <p>Classic pizza with fresh mozzarella and basil</p>
+                        <div class="order-price">LKR 1,499</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="star-rating" id="star-2">1</div>
+                </div>
+                <div class="order-card">
+                    <div class="order-image">
+                        <img src="./Images/Carbonara-7.jpg" alt="Pasta Carbonara">
+                    </div>
+                    <div class="order-info">
+                        <h3>Pasta Carbonara</h3>
+                        <p>Creamy pasta with pancetta and parmesan cheese</p>
+                        <div class="order-price">LKR 1,399</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="star-rating" id="star-3">1</div>
+                </div>
+                <div class="order-card">
+                    <div class="order-image">
+                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fresh Salad">
+                    </div>
+                    <div class="order-info">
+                        <h3>Garden Fresh Salad</h3>
+                        <p>Mixed greens with seasonal vegetables and vinaigrette</p>
+                        <div class="order-price">LKR 999</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="star-rating" id="star-4">1</div>
+                </div>
+                <div class="order-card">
+                    <div class="order-image">
+                        <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Rice and Curry">
+                    </div>
+                    <div class="order-info">
+                        <h3>Traditional Rice & Curry</h3>
+                        <p>Authentic Sri Lankan rice with 3 curries</p>
+                        <div class="order-price">LKR 850</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="star-rating" id="star-5">1</div>
+                </div>
+                <div class="order-card">
+                    <div class="order-image">
+                        <img src="./Images/images.jpgAF" alt="Kottu Roti">
+                    </div>
+                    <div class="order-info">
+                        <h3>Chicken Kottu</h3>
+                        <p>Popular Sri Lankan chopped roti with vegetables</p>
+                        <div class="order-price">LKR 650</div>
+                        <button class="order-btn">Order Now</button>
+                    </div>
+                    <div class="star-rating" id="star-6">1</div>
+                </div>
+            </div>
+            
+            <!-- Delivery Address Form Button -->
+            <div class="address-btn-container">
+                <button class="address-btn" id="deliveryAddressBtn">Delivery Address Form</button>
+                <button class="dishes-btn" id="dishesOrderedBtn">The Dishes We Ordered</button>
+                <button class="admin-btn" id="adminBtn">Admin</button>
+            </div>
+            
+            <!-- Address Submitted Message -->
+            <div id="addressSubmittedMessage" class="address-submitted-message" style="display: none;">
+                ✅ Delivery address submitted successfully! Your order will be delivered soon.
+            </div>
+        </div>
+    </div>
+
+    <!-- Address Input Modal -->
+    <div id="addressModal" class="modal">
+        <div class="modal-content address-modal-content">
+            <span class="close-modal" id="closeAddressModal">&times;</span>
+            <h2 class="modal-title">Delivery Address Form</h2>
+            <form class="address-form" id="addressForm">
+                <div class="form-group">
+                    <label for="fullName">Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                </div>
+                <div class="form-group">
+                    <label for="landmark">Landmark (Optional)</label>
+                    <input type="text" id="landmark" name="landmark" placeholder="Nearby landmark for easier delivery">
+                </div>
+                <button type="submit" class="address-submit-btn">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dishes Ordered Modal -->
+    <div id="dishesOrderedModal" class="modal">
+        <div class="modal-content dishes-ordered-container">
+            <span class="close-modal" id="closeDishesModal">&times;</span>
+            <h2 class="dishes-ordered-header">The Dishes We Ordered</h2>
+            <div class="dish-header">
+                <div class="dish-header-name">Dish Name</div>
+                <div class="dish-header-item">Quantity</div>
+                <div class="dish-header-item">Price</div>
+                <div class="dish-header-item">Total</div>
+            </div>
+            <div id="dishesList" class="dishes-list">
+                <!-- Dishes will be dynamically added here -->
+            </div>
+            <div id="totalDishes" class="total-dishes">
+                <!-- Total dishes count will be displayed here -->
+            </div>
+            <div id="totalAmount" class="total-amount">
+                <!-- Total amount will be displayed here -->
+            </div>
+            <button class="back-btn" id="backToOrderBtn">Back to Order</button>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminPanelModal" class="modal">
+        <div class="modal-content admin-panel-container">
+            <span class="close-modal" id="closeAdminModal">&times;</span>
+            <h2 class="admin-panel-header">Admin Panel</h2>
+            <div id="adminLoginForm" class="admin-login-form">
+                <div class="form-group">
+                    <label for="adminPassword">Admin Password</label>
+                    <input type="password" id="adminPassword" name="adminPassword" placeholder="Enter admin password" required>
+                </div>
+                <button type="button" class="admin-login-btn" id="adminLoginBtn">Login as Admin</button>
+            </div>
+            <div id="adminContent" style="display: none;">
+                <div class="user-header">
+                    <div class="user-header-name">User Name</div>
+                    <div class="user-header-email">Email</div>
+                    <div class="user-header-time">Login Time</div>
+                </div>
+                <div id="usersList" class="users-list">
+                    <!-- Users will be dynamically added here -->
+                </div>
+                <div id="totalUsers" class="total-users">
+                    <!-- Total users count will be displayed here -->
+                </div>
+                
+                <!-- Address Data Section -->
+                <div class="address-data-container">
+                    <h3 class="address-data-header">Delivery Address Data</h3>
+                    <div class="address-header">
+                        <div class="address-header-name">Name</div>
+                        <div class="address-header-phone">Phone</div>
+                        <div class="address-header-city">City</div>
+                        <div class="address-header-landmark">Landmark</div>
+                    </div>
+                    <div id="addressList" class="address-list">
+                        <!-- Address data will be dynamically added here -->
+                    </div>
+                    <div id="totalAddresses" class="total-addresses">
+                        <!-- Total addresses count will be displayed here -->
+                    </div>
+                </div>
+                
+                <div class="admin-buttons-container">
+                    <button class="upload-btn" id="uploadExcelBtn">Upload to Excel</button>
+                    <button class="admin-back-btn" id="adminBackBtn">Back to Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content login-modal-content">
+            <span class="close-modal" id="closeLoginModal">&times;</span>
+            <h2 class="modal-title">Login to Quick Bite</h2>
+            <form class="login-form" id="loginForm">
+            <div class="form-group">
+                    <label for="fullname">Name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Enter your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Gmail ID</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your gmail address" required>
+                </div>
+                 <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+                </div>
+                <button type="submit" class="login-submit-btn">Login</button>
+                <div class="signup-link">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quick Bite Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content video-modal-content">
+            <span class="close-modal" id="closeVideoModal">&times;</span>
+            <h2 class="modal-title">Quick Bite - Our Story</h2>
+            <div class="video-container">
+                <a href="https://www.youtube.com/shorts/8pljaZwrwsc">Quick Bite Video</a>
+            </div>
+            <div class="video-description">
+                <p>Discover the story behind Quick Bite - how we're revolutionizing food delivery with fresh ingredients, 
+                expert chefs, and lightning-fast service. Watch to learn more about our commitment to quality and 
+                customer satisfaction.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Notification -->
+    <div id="cartNotification" class="cart-notification">
+        Item added to cart successfully!
+    </div>
+
+    <script>
+        // Global variable to track login status
+        let isLoggedIn = false;
+        let currentUser = null;
+        let selectedFoodItem = null;
+        let cartItems = [];
+        let cartCount = 0;
+        let orderCounts = {
+            'Gourmet Burger': 0,
+            'Margherita Pizza': 0,
+            'Pasta Carbonara': 0,
+            'Garden Fresh Salad': 0,
+            'Traditional Rice & Curry': 0,
+            'Chicken Kottu': 0
+        };
+        
+        // Store logged in users
+        let loggedInUsers = [];
+        
+        // Store address data
+        let addressData = [];
+        
+        // Dish prices
+        const dishPrices = {
+            'Gourmet Burger': 1299,
+            'Margherita Pizza': 1499,
+            'Pasta Carbonara': 1399,
+            'Garden Fresh Salad': 999,
+            'Traditional Rice & Curry': 850,
+            'Chicken Kottu': 650
+        };
+        
+        // Track if user has filled out the address form
+        let addressFormFilled = false;
+
+        // Get modal elements
+        const orderModal = document.getElementById('orderModal');
+        const orderNowBtn = document.getElementById('orderNowBtn');
+        const closeModal = document.querySelector('.close-modal');
+        const cartNotification = document.getElementById('cartNotification');
+        const cartBadge = document.getElementById('cartBadge');
+        
+        // Login modal elements
+        const loginModal = document.getElementById('loginModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const loginForm = document.getElementById('loginForm');
+        
+        // Video modal elements
+        const videoModal = document.getElementById('videoModal');
+        const quickBiteVideoBtn = document.getElementById('quickBiteVideoBtn');
+        const closeVideoModal = document.getElementById('closeVideoModal');
+        
+        // Address modal elements
+        const addressModal = document.getElementById('addressModal');
+        const closeAddressModal = document.getElementById('closeAddressModal');
+        const addressForm = document.getElementById('addressForm');
+        
+        // Dishes Ordered modal elements
+        const dishesOrderedModal = document.getElementById('dishesOrderedModal');
+        const closeDishesModal = document.getElementById('closeDishesModal');
+        const dishesList = document.getElementById('dishesList');
+        const totalDishes = document.getElementById('totalDishes');
+        const totalAmount = document.getElementById('totalAmount');
+        const backToOrderBtn = document.getElementById('backToOrderBtn');
+        
+        // Admin Panel elements
+        const adminPanelModal = document.getElementById('adminPanelModal');
+        const adminBtn = document.getElementById('adminBtn');
+        const closeAdminModal = document.getElementById('closeAdminModal');
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+        const adminPassword = document.getElementById('adminPassword');
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const adminContent = document.getElementById('adminContent');
+        const usersList = document.getElementById('usersList');
+        const totalUsers = document.getElementById('totalUsers');
+        const adminBackBtn = document.getElementById('adminBackBtn');
+        const uploadExcelBtn = document.getElementById('uploadExcelBtn');
+        
+        // Address data elements
+        const addressList = document.getElementById('addressList');
+        const totalAddresses = document.getElementById('totalAddresses');
+        
+        // Delivery Address Button
+        const deliveryAddressBtn = document.getElementById('deliveryAddressBtn');
+        
+        // Dishes Ordered Button
+        const dishesOrderedBtn = document.getElementById('dishesOrderedBtn');
+        
+        // Address Submitted Message
+        const addressSubmittedMessage = document.getElementById('addressSubmittedMessage');
+        
+        // Logo element
+        const logo = document.getElementById('logo');
+        
+        // Function to check if user has placed any orders
+        function hasOrders() {
+            for (const dish in orderCounts) {
+                if (orderCounts[dish] > 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        // Function to check if user is logged in
+        function checkLogin() {
+            return isLoggedIn;
+        }
+        
+        // Function to redirect to login if not logged in
+        function requireLogin() {
+            if (!checkLogin()) {
+                // Close order modal if open
+                orderModal.style.display = 'none';
+                // Open login modal
+                loginModal.style.display = 'block';
+                return false;
+            }
+            return true;
+        }
+        
+        // Function to update UI after address form submission
+        function updateUIAfterAddressSubmission() {
+            // Hide the delivery address button
+            deliveryAddressBtn.style.display = 'none';
+            
+            // Show the address submitted message
+            addressSubmittedMessage.style.display = 'block';
+            
+            // Update the address button container layout
+            const addressBtnContainer = document.querySelector('.address-btn-container');
+            if (addressBtnContainer) {
+                addressBtnContainer.style.justifyContent = 'center';
+            }
+        }
+        
+        // Function to update cart badge
+        function updateCartBadge() {
+            if (cartCount > 0) {
+                cartBadge.textContent = cartCount;
+                cartBadge.style.display = 'flex';
+            } else {
+                cartBadge.style.display = 'none';
+            }
+        }
+        
+        // Function to show star rating
+        function showStarRating(foodItem, count) {
+            const starElements = {
+                'Gourmet Burger': document.getElementById('star-1'),
+                'Margherita Pizza': document.getElementById('star-2'),
+                'Pasta Carbonara': document.getElementById('star-3'),
+                'Garden Fresh Salad': document.getElementById('star-4'),
+                'Traditional Rice & Curry': document.getElementById('star-5'),
+                'Chicken Kottu': document.getElementById('star-6')
+            };
+            
+            const starElement = starElements[foodItem];
+            if (starElement) {
+                starElement.textContent = count;
+                starElement.classList.add('show');
+                
+                // Hide the star after 2 seconds
+                setTimeout(() => {
+                    starElement.classList.remove('show');
+                }, 2000);
+            }
+        }
+        
+        // Function to display ordered dishes
+        function displayOrderedDishes() {
+            // Clear previous dishes list
+            dishesList.innerHTML = '';
+            
+            let totalItems = 0;
+            let totalPrice = 0;
+            let hasOrders = false;
+            
+            // Loop through all dishes and display those with orders
+            for (const dish in orderCounts) {
+                if (orderCounts[dish] > 0) {
+                    hasOrders = true;
+                    totalItems += orderCounts[dish];
+                    const dishTotalPrice = dishPrices[dish] * orderCounts[dish];
+                    totalPrice += dishTotalPrice;
+                    
+                    const dishItem = document.createElement('div');
+                    dishItem.className = 'dish-item';
+                    dishItem.innerHTML = `
+                        <div class="dish-name">${dish}</div>
+                        <div class="dish-quantity">${orderCounts[dish]}</div>
+                        <div class="dish-price">LKR ${dishPrices[dish]}</div>
+                        <div class="dish-total">LKR ${dishTotalPrice}</div>
+                    `;
+                    dishesList.appendChild(dishItem);
+                }
+            }
+            
+            // If no orders, show message
+            if (!hasOrders) {
+                dishesList.innerHTML = '<div class="no-orders">No dishes ordered yet. Start ordering now!</div>';
+                totalDishes.innerHTML = '';
+                totalAmount.innerHTML = '';
+            } else {
+                totalDishes.innerHTML = `Total Dishes Ordered: ${totalItems}`;
+                totalAmount.innerHTML = `Total Amount: LKR ${totalPrice}`;
+            }
+            
+            // Show the dishes ordered modal
+            dishesOrderedModal.style.display = 'block';
+        }
+        
+        // Function to display logged in users in admin panel
+        function displayLoggedInUsers() {
+            // Clear previous users list
+            usersList.innerHTML = '';
+            
+            if (loggedInUsers.length === 0) {
+                usersList.innerHTML = '<div class="no-orders">No users have logged in yet.</div>';
+                totalUsers.innerHTML = '';
+            } else {
+                // Display each user
+                loggedInUsers.forEach(user => {
+                    const userItem = document.createElement('div');
+                    userItem.className = 'user-item';
+                    userItem.innerHTML = `
+                        <div class="user-name">${user.fullname}</div>
+                        <div class="user-email">${user.email}</div>
+                        <div class="user-login-time">${user.loginTime}</div>
+                    `;
+                    usersList.appendChild(userItem);
+                });
+                
+                totalUsers.innerHTML = `Total Users Logged In: ${loggedInUsers.length}`;
+            }
+        }
+        
+        // Function to display address data in admin panel
+        function displayAddressData() {
+            // Clear previous address list
+            addressList.innerHTML = '';
+            
+            if (addressData.length === 0) {
+                addressList.innerHTML = '<div class="no-orders">No delivery addresses submitted yet.</div>';
+                totalAddresses.innerHTML = '';
+            } else {
+                // Display each address
+                addressData.forEach(address => {
+                    const addressItem = document.createElement('div');
+                    addressItem.className = 'address-item';
+                    addressItem.innerHTML = `
+                        <div class="address-name">${address.fullName}</div>
+                        <div class="address-phone">${address.phone}</div>
+                        <div class="address-city">${address.city}</div>
+                        <div class="address-landmark">${address.landmark || 'N/A'}</div>
+                    `;
+                    addressList.appendChild(addressItem);
+                });
+                
+                totalAddresses.innerHTML = `Total Addresses Submitted: ${addressData.length}`;
+            }
+        }
+        
+        // Function to export user data to Excel
+        function exportToExcel() {
+            if (loggedInUsers.length === 0 && addressData.length === 0) {
+                alert("No data available to export.");
+                return;
+            }
+            
+            // Create CSV content
+            let csvContent = "";
+            
+            // Add user data
+            if (loggedInUsers.length > 0) {
+                csvContent += "Users\n";
+                csvContent += "Name,Email,Login Time\n";
+                
+                loggedInUsers.forEach(user => {
+                    csvContent += `"${user.fullname}","${user.email}","${user.loginTime}"\n`;
+                });
+                
+                csvContent += "\n";
+            }
+            
+            // Add address data
+            if (addressData.length > 0) {
+                csvContent += "Delivery Addresses\n";
+                csvContent += "Name,Phone,City,Landmark\n";
+                
+                addressData.forEach(address => {
+                    csvContent += `"${address.fullName}","${address.phone}","${address.city}","${address.landmark || 'N/A'}"\n`;
+                });
+            }
+            
+            // Create blob and download link
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            const currentDate = new Date().toISOString().split('T')[0];
+            
+            link.setAttribute("href", url);
+            link.setAttribute("download", `quickbite_data_${currentDate}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show success message
+            alert(`Data exported successfully! File downloaded as "quickbite_data_${currentDate}.csv"`);
+        }
+        
+        // Function to handle order modal close
+        function handleOrderModalClose() {
+            // Check if user has placed orders but hasn't filled out the address form
+            if (hasOrders() && !addressFormFilled) {
+                // Show a confirmation message
+                const shouldShowAddressForm = confirm("You have placed orders but haven't provided delivery address. Would you like to fill out the delivery address form now?");
+                
+                if (shouldShowAddressForm) {
+                    // Close order modal and open address modal
+                    orderModal.style.display = 'none';
+                    addressModal.style.display = 'block';
+                } else {
+                    // User chose not to fill address, just close the modal
+                    orderModal.style.display = 'none';
+                }
+            } else {
+                // No orders placed or address already filled, just close the modal
+                orderModal.style.display = 'none';
+            }
+        }
+        
+        // Refresh page when logo is clicked
+        logo.addEventListener('click', function() {
+            location.reload();
+        });
+        
+        // Open order modal when Order Now button is clicked
+        orderNowBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (!requireLogin()) {
+                return; // Stop execution if not logged in
+            }
+            
+            // If logged in, open order modal
+            orderModal.style.display = 'block';
+        });
+        
+        // Open login modal when Login button is clicked
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'block';
+        });
+        
+        // Open video modal when Quick Bite Video button is clicked
+        quickBiteVideoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            videoModal.style.display = 'block';
+        });
+        
+        // Open address modal when Delivery Address Form button is clicked
+        deliveryAddressBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            addressModal.style.display = 'block';
+        });
+        
+        // Open dishes ordered modal when The Dishes We Ordered button is clicked
+        dishesOrderedBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            displayOrderedDishes();
+        });
+        
+        // Open admin panel modal when Admin button is clicked
+        adminBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            adminPanelModal.style.display = 'block';
+            // Reset admin login form
+            adminPassword.value = '';
+            adminLoginForm.style.display = 'flex';
+            adminContent.style.display = 'none';
+        });
+        
+        // Admin login functionality
+        adminLoginBtn.addEventListener('click', function() {
+            const password = adminPassword.value;
+            const adminPasswordCorrect = "Mr.Afeef@Pro";
+            
+            if (password === adminPasswordCorrect) {
+                // Show admin content
+                adminLoginForm.style.display = 'none';
+                adminContent.style.display = 'block';
+                
+                // Display logged in users
+                displayLoggedInUsers();
+                
+                // Display address data
+                displayAddressData();
+            } else {
+                alert("Incorrect admin password. Please try again.");
+                adminPassword.value = '';
+                adminPassword.focus();
+            }
+        });
+        
+        // Upload to Excel functionality
+        uploadExcelBtn.addEventListener('click', function() {
+            exportToExcel();
+        });
+        
+        // Admin back button
+        adminBackBtn.addEventListener('click', function() {
+            adminPanelModal.style.display = 'none';
+            orderModal.style.display = 'block';
+        });
+        
+        // Close modals when X is clicked
+        closeModal.addEventListener('click', function() {
+            handleOrderModalClose();
+        });
+        
+        closeLoginModal.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+        
+        closeVideoModal.addEventListener('click', function() {
+            videoModal.style.display = 'none';
+        });
+        
+        closeAddressModal.addEventListener('click', function() {
+            addressModal.style.display = 'none';
+        });
+        
+        closeDishesModal.addEventListener('click', function() {
+            dishesOrderedModal.style.display = 'none';
+        });
+        
+        closeAdminModal.addEventListener('click', function() {
+            adminPanelModal.style.display = 'none';
+        });
+        
+        // Back to order button
+        backToOrderBtn.addEventListener('click', function() {
+            dishesOrderedModal.style.display = 'none';
+            orderModal.style.display = 'block';
+        });
+        
+        // Close modals when clicking outside the modal content
+        window.addEventListener('click', function(e) {
+            if (e.target === orderModal) {
+                handleOrderModalClose();
+            }
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+            }
+            if (e.target === addressModal) {
+                addressModal.style.display = 'none';
+            }
+            if (e.target === dishesOrderedModal) {
+                dishesOrderedModal.style.display = 'none';
+            }
+            if (e.target === adminPanelModal) {
+                adminPanelModal.style.display = 'none';
+            }
+        });
+        
+        // Login form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            
+            // Simple validation
+            if (fullname && email) {
+                // Set login status
+                isLoggedIn = true;
+                currentUser = { fullname, email };
+                
+                // Add user to logged in users list with timestamp
+                const loginTime = new Date().toLocaleString();
+                loggedInUsers.push({
+                    fullname,
+                    email,
+                    loginTime
+                });
+                
+                // Show success message
+                alert(`Login successful! Welcome back, ${fullname}!`);
+                loginModal.style.display = 'none';
+                
+                // Reset form
+                loginForm.reset();
+                
+                // Update login button to show user's actual full name
+                loginBtn.innerHTML = `👋 ${fullname}`;
+                loginBtn.classList.remove('login-btn');
+                loginBtn.classList.add('user-welcome');
+                
+                // Now automatically open the order modal after successful login
+                orderModal.style.display = 'block';
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+        
+        // Address form submission
+        addressForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const landmark = document.getElementById('landmark').value;
+            
+            if (fullName && phone && city) {
+                // Mark address form as filled
+                addressFormFilled = true;
+                
+                // Store address data
+                const address = {
+                    fullName,
+                    phone,
+                    city,
+                    landmark: landmark || ''
+                };
+                
+                addressData.push(address);
+                
+                // Update UI to hide address button and show success message
+                updateUIAfterAddressSubmission();
+                
+                // Show success message
+                cartNotification.textContent = `Your order will be delivered to ${city}${landmark ? `, near ${landmark}` : ''}.`;
+                cartNotification.style.display = 'block';
+                
+                // Close address modal
+                addressModal.style.display = 'none';
+                
+                // Reset form
+                addressForm.reset();
+                
+                // Hide notification after 5 seconds
+                setTimeout(() => {
+                    cartNotification.style.display = 'none';
+                }, 5000);
+            } else {
+                alert('Please fill in all required fields');
+            }
+        });
+        
+        // Order functionality with star rating
+        const orderBtns = document.querySelectorAll('.order-btn');
+        orderBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Check if user is logged in before allowing order
+                if (!requireLogin()) {
+                    return; // Stop execution if not logged in
+                }
+                
+                const foodItem = this.parentElement.querySelector('h3').textContent;
+                const foodPrice = this.parentElement.querySelector('.order-price').textContent;
+                
+                // Store selected food item
+                selectedFoodItem = foodItem;
+                
+                // Increment order count for this item
+                orderCounts[foodItem]++;
+                
+                // Show star rating with the count
+                showStarRating(foodItem, orderCounts[foodItem]);
+                
+                // Show success message
+                cartNotification.textContent = `${foodItem} ordered ${orderCounts[foodItem]} time(s)!`;
+                cartNotification.style.display = 'block';
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    cartNotification.style.display = 'none';
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
